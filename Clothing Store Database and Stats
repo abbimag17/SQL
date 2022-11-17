@@ -1,0 +1,25 @@
+CREATE TABLE clothing_store (id INTEGER PRIMARY KEY, name TEXT, stock NUMERIC, price INTEGER, aisle NUMERIC);
+INSERT INTO clothing_store VALUES (1, "Jeans", 20, 30, 5);
+INSERT INTO clothing_store VALUES (2, "T-shirts", 20, 15, 5);
+INSERT INTO clothing_store VALUES (3, "Blouse", 17, 15, 5);
+INSERT INTO clothing_store VALUES (4, "Beanies", 10, 8, 2);
+INSERT INTO clothing_store VALUES (5, "Coats", 30, 50, 3);
+INSERT INTO clothing_store VALUES (6, "Parka", 25, 40, 4);
+INSERT INTO clothing_store VALUES (7, "Socks", 10, 5, 2);
+INSERT INTO clothing_store VALUES (8, "Tank Top", 14, 7, 1);
+INSERT INTO clothing_store VALUES (9, "Sneakers", 20, 50, 6);
+INSERT INTO clothing_store VALUES (10, "Sweater", 30, 30, 3);
+INSERT INTO clothing_store VALUES (11, "Button-up", 8, 20, 4);
+INSERT INTO clothing_store VALUES (12, "Sweat pants", 10, 17, 3);
+INSERT INTO clothing_store VALUES (13, "Long sleeve", 30, 15, 4);
+INSERT INTO clothing_store VALUES (14, "Shorts", 10, 25, 6);
+INSERT INTO clothing_store VALUES (15, "Dress Pants", 20, 30, 4);
+
+SELECT * FROM clothing_store;
+
+SELECT* FROM clothing_store WHERE price > 10 ORDER BY price ASC;
+
+SELECT * from clothing_store WHERE price < 10 ORDER BY price ASC;
+
+SELECT name, stock FROM  clothing_store
+ORDER BY stock ASC;
