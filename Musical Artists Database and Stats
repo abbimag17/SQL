@@ -1,0 +1,67 @@
+CREATE TABLE musical_artists (id INTEGER PRIMARY KEY, name TEXT, hit_song TEXT, albums REAL);
+
+INSERT INTO musical_artists VALUES (1, "Arca", "El Alma Que Te Trajo", 11);
+INSERT INTO musical_artists VALUES (2, "Mazzy Star", "Fade Into You", 4);
+INSERT INTO musical_artists VALUES (3, "Charli XCX", "Hot In It", 7);
+INSERT INTO musical_artists VALUES (4, "Project Pat", "RIP Young", 19);
+INSERT INTO musical_artists VALUES (5, "Asobi Seksu", "Thursday", 6);
+INSERT INTO musical_artists VALUES (6, "Babyxsosa", "Everywhereigo", 1);
+INSERT INTO musical_artists VALUES (7, "Telepopmusik", "Breathe", 5);
+INSERT INTO musical_artists VALUES (8, "Chief Keef", "Love Sosa", 39);
+INSERT INTO musical_artists VALUES (9, "Deftones", "Change (In the House of Flies)", 12);
+INSERT INTO musical_artists VALUES (10, "Cocteau Twins", "Sea, Swallow Me", 10);
+
+CREATE TABLE artist_genre (artist_id INTEGER PRIMARY KEY, name TEXT, genre TEXT);
+
+INSERT INTO artist_genre VALUES (1, "Arca", "Electronic");
+INSERT INTO artist_genre VALUES (2, "Mazzy Star", "Alternative");
+INSERT INTO artist_genre VALUES (10, "Cocteau Twins", "Alternative");
+INSERT INTO artist_genre VALUES (8, "Chief Keef", "Rap");
+INSERT INTO artist_genre VALUES (5, "Asobi Seksu", "Alternative");
+INSERT INTO artist_genre VALUES (9, "Deftones", "Alternative");
+INSERT INTO artist_genre VALUES (7, "Telepopmusik", "Electronic");
+INSERT INTO artist_genre VALUES (3, "Charli XCX", "Electronic");
+INSERT INTO artist_genre VALUES (4, "Project Pat", "Rap");
+INSERT INTO artist_genre VALUES (6, "Babyxsosa", "Rap");
+
+CREATE TABLE artist_collab (artist_id INTEGER PRIMARY KEY, collab_id INTEGER);
+
+INSERT INTO artist_collab VALUES (1, 9);
+INSERT INTO artist_collab VALUES (2, 6);
+INSERT INTO artist_collab VALUES (3, 8);
+INSERT INTO artist_collab VALUES (4, 7);
+INSERT INTO artist_collab VALUES (5, 10); 
+
+/* #1 List of artists and their genre */
+SELECT musical_artists.name, artist_genre.genre
+FROM musical_artists
+JOIN artist_genre
+ON artist_genre.artist_id = musical_artists.id;
+
+/* #2 List of artists with songs and their genre */
+SELECT artist_genre.name, artist_genre.genre, musical_artists.hit_song
+FROM artist_genre
+LEFT OUTER JOIN musical_artists
+ON musical_artists.name = artist_genre.name; 
+
+/* #3 Artist names and artist they should collaborate with */
+SELECT a.name AS "Main Artist", b.name AS "Feature"
+FROM artist_collab
+JOIN musical_artists a
+ON a.id = artist_collab.artist_id
+JOIN musical_artists b
+ON b.id = artist_collab.collab_id;
+
+/* #4 Artist with their hit song and album count, listed from artist with least albums to most */
+
+SELECT name, hit_song, albums
+FROM musical_artists
+ORDER BY albums asc; 
+
+/* #5 Rap artists ordered by amount of albums out from greatest to least */
+SELECT musical_artists.name, musical_artists.albums, artist_genre.genre
+FROM musical_artists
+JOIN artist_genre
+ON musical_artists.id = artist_genre.artist_id
+WHERE genre = "Rap"
+ORDER BY albums desc;
