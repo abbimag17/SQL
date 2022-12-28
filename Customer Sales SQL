@@ -1,0 +1,22 @@
+SELECT COUNT(OrderID) FROM BIT_DB.jansales;
+
+SELECT COUNT(product) FROM BIT_DB.jansales
+WHERE product = "iPhone";
+
+SELECT customers.acctnum, customers.order_id, MarSales.location FROM BIT_DB.customers
+JOIN BIT_DB.MarSales 
+ON customers.order_id=MarSales.orderID;
+
+SELECT product, MIN(price) FROM BIT_DB.JanSales;
+
+SELECT TOTAL(price) FROM BIT_DB.JanSales;
+
+SELECT febsales.orderID, customers.acctnum FROM BIT_DB.febsales
+JOIN BIT_DB.customers 
+ON febsales.orderID=customers.order_id;
+
+SELECT product, quantity, price, location FROM BIT_DB.febsales
+WHERE location="548 Lincoln St, Seattle, WA 98101";
+
+SELECT COUNT(quantity), AVG(price) FROM BIT_DB.FebSales
+WHERE quantity > 2;
